@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/adminStyle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>All Feedbacks</title>
+  </head>
+  <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+        <a href="/" class="nav-item">
+        <i class="fas fa-home"></i> Back to Homepage
+        </a>
+        </div>
+    <h1>All Feedbacks</h1>
+    <ul>
+      <% if (feedback && feedback.length > 0) { %>
+  <% feedback.forEach(fb => { %>
+    <li style="margin-bottom: 15px;">
+      <strong><%= fb.name %></strong> <br>
+      <span><%= fb.feedback %></span>
+      <div style="margin-top: 8px;">
+        <form action="/<%= fb.id %>" method="POST">
+          <button type="submit">Edit</button>
+        </form>
+        <form action="/admin/deleteFeedback/<%= fb.id %>" method="POST"> 
+        <button type="submit">Delete</button>
+        </form>
+      </div>
+    </li>
+  <% }) %>
+<% } else { %>
+  <li>No feedback found.</li>
+<% } %>
+      </ul>
+  </body>
+</html>

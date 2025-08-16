@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Homepage</title>
+        <link rel="stylesheet" href="styles/rootStyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    </head>
+    <body>
+        <nav class="navbar">
+        <div class="navbar-container">
+        <a href="/" class="nav-item">
+        <i class="fas fa-home"></i> Home
+        </a>
+        <a href="/admin/feedback" class="nav-item">
+        <i class="fas fa-comments"></i> Feedbacks
+        </a>
+        </div>
+        <div>
+        <h1>You can submit your Feedback here 😃</h1>
+        <form action="<%= user ? '/admin/updateFeedback/' + user.id : '/admin/feedback' %>" method="POST">
+
+        <label>Name:</label>
+        <input type="text" name="name" value="<%= user?user.name:'' %>" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="<%= user?user.email:'' %>" required>
+
+        <label>Feedback:</label>
+        <textarea name="feedback" rows="4" required><%= user?user.feedback:'' %></textarea>
+
+        <button type="submit"><%= user ? 'Update' : 'Submit' %> Feedback</button>
+        </form>
+        </div>
+    </body>
+</html>
